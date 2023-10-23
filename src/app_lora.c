@@ -13,9 +13,9 @@ int app_lora_config(const struct device *dev, bool TxRx)
 	int ret;
 	struct lora_modem_config config;
 
-	config.frequency = 916800000;
+	config.frequency = 868100000;
 	config.bandwidth = BW_125_KHZ;
-	config.datarate = SF_10;
+	config.datarate = SF_8;
 	config.preamble_len = 8;
 	config.coding_rate = CR_4_5;
 	config.tx_power = 4;

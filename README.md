@@ -2,7 +2,9 @@
 
 ## Overview
 This simple application allows us to demonstrate and validate the LoRa subsystem Zephyr. This code allow testing of LoRa radios, only transmission for this code\.
-This is useful for validating your LoRa radio is working correctly before trying to connect to LoRaWAN networks..
+This is useful for validating your LoRa radio is working correctly before trying to connect to LoRaWAN networks. The version of Zephyr RTOS used is the version v3.4.0.
+
+To check the transmission of a packet, a code in matlab using a PlutoSDR board was added with an example of plots.
 
 **First Board used** : Cicecrone board by Move-X
 
