@@ -19,10 +19,8 @@ Fc = 868.1e6;
 Fs = 5e6;%4*BW;
 symbol_time = 2^SF/BW;
 symbols_per_frame = 1;
-%sp_per_frame = 1*BW;
-sp_per_frame = 15*BW;
-%nb_frame = 25;
-nb_frame = 15;
+sp_per_frame = 50*BW;
+nb_frame = 10;
 
 % plutoSDR receiver
 rxPluto = sdrrx('Pluto',...
