@@ -37,7 +37,7 @@ int main(void)
 			return 0;
 		}
 
-	while (itr < 200) {
+	for (itr = 0; itr < 200; itr++) {
 
 		printk("iteration: %d\n", itr);
 		ret = lora_send(lora_dev, data_tx, MAX_DATA_LEN);
@@ -53,7 +53,6 @@ int main(void)
 		}
 
 		k_sleep(K_MSEC(50));
-		itr++;
 	}
 	return 0;
 }
