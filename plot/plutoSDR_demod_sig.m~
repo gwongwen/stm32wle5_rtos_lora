@@ -16,10 +16,10 @@ set(0,'DefaultlineLineWidth', 1.5);
 BW = 125e3;
 SF = 8;
 Fc = 868.1e6;
-Fs = 2*BW;
+Fs = %4*BW; %5e6;
 symbol_time = 2^SF/BW;
 symbols_per_frame = 1;
-sp_per_frame = 5*BW;
+sp_per_frame = 50*BW;
 nb_frame = 5;
 
 % plutoSDR receiver

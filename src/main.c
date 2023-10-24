@@ -37,8 +37,9 @@ int main(void)
 			return 0;
 		}
 
-	while (itr < 5) {
+	while (itr < 200) {
 
+		printk("iteration: %d\n", itr);
 		ret = lora_send(lora_dev, data_tx, MAX_DATA_LEN);
 		
 		if (ret < 0) {
@@ -51,7 +52,7 @@ int main(void)
 			printk("\n");
 		}
 
-		k_sleep(K_MSEC(1000));
+		k_sleep(K_MSEC(50));
 		itr++;
 	}
 	return 0;
