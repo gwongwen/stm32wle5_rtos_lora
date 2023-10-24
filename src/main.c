@@ -51,7 +51,7 @@ int main(void)
 			printk("\n");
 		}
 
-		k_sleep(K_MSEC(1));
+		k_sleep(K_MSEC(10));
 		itr++;
 	}
 	return 0;
