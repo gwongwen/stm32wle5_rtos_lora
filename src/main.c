@@ -22,7 +22,7 @@ int main(void)
 	int8_t ret;
 	int8_t itr = 0;
 
-	printk("LoRa transmitter test %s\n", CONFIG_BOARD);
+	printk("LoRa Transmitter Example\nBoard: %s\n", CONFIG_BOARD);
 	
 	// setup LoRa radio device:
 	lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0));
