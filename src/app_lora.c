@@ -25,7 +25,7 @@ int app_lora_config(const struct device *dev, bool TxRx)
 
 	ret = lora_config(dev, &config);
 	if (ret < 0) {
-		printk("LoRa device configuration failed");
+		printk("LoRa device configuration failed. error: %d\n", ret);
 		return false;
 	}
 	return(true);
