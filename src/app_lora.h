@@ -15,6 +15,6 @@
 
 #define TRANSMIT    1
 
-int app_lora_config(const struct device *dev, bool TxRx);
+int8_t app_lora_config(const struct device *dev, bool TxRx);
 
 #endif /* APP_LORA__H */

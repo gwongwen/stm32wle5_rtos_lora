@@ -16,7 +16,7 @@
 
 char data_tx[MAX_DATA_LEN] = {'h', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd'};
 
-int main(void)
+int8_t main(void)
 {
 	const struct device *lora_dev;
 	int8_t ret;

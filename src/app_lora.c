@@ -7,10 +7,9 @@
 
  #include "app_lora.h"
 
-
-int app_lora_config(const struct device *dev, bool TxRx)
+int8_t app_lora_config(const struct device *dev, bool TxRx)
 {
-	int ret;
+	int8_t ret;
 	struct lora_modem_config config;
 
 	config.frequency = 868100000;
