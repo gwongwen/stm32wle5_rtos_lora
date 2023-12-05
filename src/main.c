@@ -12,15 +12,24 @@
 
 #include "app_lora.h"
 
-#define MAX_DATA_LEN 10
-
-char data_tx[MAX_DATA_LEN] = {'h', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd'};
+struct payload_serial {
+		uint32_t id_test;
+		char *time;
+		char *name_val;
+		uint32_t rand_val;
+};
 
 int8_t main(void)
 {
 	const struct device *lora_dev;
 	int8_t ret;
 	int8_t itr = 0;
+
+	struct payload_serial test_tx;
+	test_tx.id_test = 1;
+	test_tx.time = "time";
+	test_tx.name_val = "temp:";
+	test_tx.rand_val = sys_rand32_get();
 
 	printk("LoRa Transmitter Example\nBoard: %s\n", CONFIG_BOARD);
 	
@@ -37,18 +46,18 @@ int8_t main(void)
 			return 0;
 		}
 
-	for (itr = 0; itr < 200; itr++) {
+	for (itr = 0; itr < 5; itr++) {
 
 		printk("iteration: %d\n", itr);
-		ret = lora_send(lora_dev, data_tx, MAX_DATA_LEN);
+		ret = lora_send(lora_dev, &test_tx, sizeof(test_tx));
 		
 		if (ret < 0) {
 			printk("LoRa send failed\n");
 			return 0;
 		} else {
-			printk("XMIT %d bytes: ", MAX_DATA_LEN);
-			for (uint16_t i = 0; i < MAX_DATA_LEN; i++)
-				printk("0x%02x ",data_tx[i]);
+			printk("XMIT %d bytes: \n", sizeof(test_tx));
+			for (uint16_t i = 0; i < sizeof(test_tx); i++)
+				printk("id: %d, time: %s, nam: %s, value: %d\n", test_tx.id_test, test_tx.time, test_tx.name_val, test_tx.rand_val);
 			printk("\n");
 		}
 
