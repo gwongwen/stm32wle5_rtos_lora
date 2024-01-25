@@ -19,6 +19,8 @@ struct payload_serial {
 		uint32_t rand_val;
 };
 
+static const struct gpio_dt_spec led_tx = GPIO_DT_SPEC_GET(LED_TX, gpios);
+
 int8_t main(void)
 {
 	const struct device *lora_dev;
@@ -40,6 +42,11 @@ int8_t main(void)
 		return 0;
 	}
 
+	ret = gpio_pin_configure_dt(&led_tx, GPIO_OUTPUT_ACTIVE);
+	if (ret < 0) {
+		return 0;
+	}
+
 	if (app_lora_config(lora_dev, TRANSMIT)) {
 		printk("LoRa device configured\n");
 	} else {
@@ -55,6 +62,10 @@ int8_t main(void)
 			printk("LoRa send failed\n");
 			return 0;
 		} else {
+			ret = gpio_pin_toggle_dt(&led_tx);
+			if (ret < 0) {
+				return 0;
+			}
 			printk("XMIT %d bytes: \n", sizeof(test_tx));
 			for (uint16_t i = 0; i < sizeof(test_tx); i++)
 				printk("id: %d, time: %s, nam: %s, value: %d\n", test_tx.id_test, test_tx.time, test_tx.name_val, test_tx.rand_val);

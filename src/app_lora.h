@@ -15,6 +15,7 @@
 #include <zephyr/random/rand32.h>
 
 #define TRANSMIT    1
+#define LED_TX      DT_ALIAS(led0)
 
 int8_t app_lora_config(const struct device *dev, bool TxRx);
 
