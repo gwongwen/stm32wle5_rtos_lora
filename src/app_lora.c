@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
- #include "app_lora.h"
+#include "app_lora.h"
 
 int8_t app_lora_config(const struct device *dev, bool TxRx)
 {
