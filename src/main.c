@@ -14,7 +14,7 @@
 #include "app_lora.h"
 
 struct payload_serial {
-		uint8_t id_test;
+		char *id_test;
 		char *time;
 		char *name_val;
 		uint32_t rand_val;
@@ -28,7 +28,7 @@ int8_t main(void)
 	int8_t ret;
 	int8_t itr = 0;
 
-	uint8_t dev_eui[] = { 0x70, 0xB3, 0xD5, 0x7E, 0xD0, 0x06, 0x21, 0xA5 };
+	char dev_eui[] = "0x70, 0xB3, 0xD5, 0x7E, 0xD0, 0x06, 0x21, 0xA5";
 	char date_time[] = "23/02/13,16:31:07-20";
 
 	struct payload_serial test_tx;
@@ -72,7 +72,7 @@ int8_t main(void)
 			}
 			printk("XMIT %d bytes: \n", sizeof(test_tx));
 			for (uint16_t i = 0; i < sizeof(test_tx); i++) {
-				printk("id: %d, time: %s, test: %s, value: %d\n", test_tx.id_test, test_tx.time, test_tx.name_val, test_tx.rand_val);
+				printk("id: %s, time: %s, test: %s, value: %d\n", test_tx.id_test, test_tx.time, test_tx.name_val, test_tx.rand_val);
 			}
 			printk("\n");
 		}
