@@ -29,7 +29,7 @@ int8_t main(void)
 	int8_t itr = 0;
 
 	uint8_t dev_eui[] = { 0x70, 0xB3, 0xD5, 0x7E, 0xD0, 0x06, 0x21, 0xA5 };
-	char date_time[] = "20/01/02,16:31:07-20";
+	char date_time[] = "23/02/13,16:31:07-20";
 
 	struct payload_serial test_tx;
 	test_tx.id_test = dev_eui;
@@ -71,11 +71,11 @@ int8_t main(void)
 				return 0;
 			}
 			printk("XMIT %d bytes: \n", sizeof(test_tx));
-			for (uint16_t i = 0; i < sizeof(test_tx); i++)
+			for (uint16_t i = 0; i < sizeof(test_tx); i++) {
 				printk("id: %d, time: %s, nam: %s, value: %d\n", test_tx.id_test, test_tx.time, test_tx.name_val, test_tx.rand_val);
+			}
 			printk("\n");
 		}
-
 		k_sleep(K_MSEC(50));
 	}
 	return 0;
