@@ -58,7 +58,6 @@ int8_t main(void)
 		}
 
 	for (itr = 0; itr < 5; itr++) {
-
 		printk("iteration: %d\n", itr);
 		ret = lora_send(lora_dev, &test_tx, sizeof(test_tx));
 		
