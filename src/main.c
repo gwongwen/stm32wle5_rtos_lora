@@ -10,10 +10,11 @@
 #include <zephyr/drivers/lora.h>
 #include <zephyr/drivers/gpio.h>
 
+#include <zephyr/posix/time.h>
 #include "app_lora.h"
 
 struct payload_serial {
-		uint32_t id_test;
+		uint8_t id_test;
 		char *time;
 		char *name_val;
 		uint32_t rand_val;
@@ -27,9 +28,12 @@ int8_t main(void)
 	int8_t ret;
 	int8_t itr = 0;
 
+	uint8_t dev_eui[] = { 0x70, 0xB3, 0xD5, 0x7E, 0xD0, 0x06, 0x21, 0xA5 };
+	char date_time[] = "20/01/02,16:31:07-20";
+
 	struct payload_serial test_tx;
-	test_tx.id_test = 1;
-	test_tx.time = "time";
+	test_tx.id_test = dev_eui;
+	test_tx.time = date_time;
 	test_tx.name_val = "temp:";
 	test_tx.rand_val = sys_rand32_get();
 
