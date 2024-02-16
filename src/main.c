@@ -13,6 +13,7 @@
 #include <zephyr/posix/time.h>
 #include "app_lora.h"
 
+//  ======== globals ============================================
 struct payload_serial {
 		char *id_test;
 		char *time;
@@ -22,6 +23,7 @@ struct payload_serial {
 
 static const struct gpio_dt_spec led_tx = GPIO_DT_SPEC_GET(LED_TX, gpios);
 
+//  ======== main ===============================================
 int8_t main(void)
 {
 	const struct device *lora_dev;
@@ -31,6 +33,7 @@ int8_t main(void)
 	char dev_eui[] = "0x70, 0xB3, 0xD5, 0x7E, 0xD0, 0x06, 0x21, 0xA5";
 	char date_time[] = "23/02/13,16:31:07-20";
 
+	// data to be transmitted
 	struct payload_serial test_tx;
 	test_tx.id_test = dev_eui;
 	test_tx.time = date_time;
@@ -39,24 +42,27 @@ int8_t main(void)
 
 	printk("LoRa Transmitter Example\nBoard: %s\n", CONFIG_BOARD);
 	
-	// setup LoRa radio device:
+	// setup lora radio device
 	lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0));
 	if (!device_is_ready(lora_dev)) {
 		printk("%s: device not ready\n", lora_dev->name);
 		return 0;
 	}
 
+	// setup tx led at GPIO PC0
 	ret = gpio_pin_configure_dt(&led_tx, GPIO_OUTPUT_ACTIVE);
 	if (ret < 0) {
 		return 0;
 	}
 
+	// configuration of lora parameters 
 	if (app_lora_config(lora_dev, TRANSMIT)) {
 		printk("LoRa device configured\n");
 	} else {
 			return 0;
 		}
 
+	// transmission of 5 packets on PHY lora layer
 	for (itr = 0; itr < 5; itr++) {
 		printk("iteration: %d\n", itr);
 		ret = lora_send(lora_dev, &test_tx, sizeof(test_tx));
@@ -65,17 +71,18 @@ int8_t main(void)
 			printk("LoRa send failed\n");
 			return 0;
 		} else {
-			ret = gpio_pin_toggle_dt(&led_tx);
+			ret = gpio_pin_toggle_dt(&led_tx);	// flashing of the LED when a packet is transmitted 
 			if (ret < 0) {
 				return 0;
 			}
+			// printing of data and syze of packets
 			printk("XMIT %d bytes: \n", sizeof(test_tx));
 			for (uint16_t i = 0; i < sizeof(test_tx); i++) {
 				printk("id: %s, time: %s, test: %s, value: %d\n", test_tx.id_test, test_tx.time, test_tx.name_val, test_tx.rand_val);
 			}
 			printk("\n");
 		}
-		k_sleep(K_MSEC(50));
+		k_sleep(K_MSEC(1000));	// waiting 1s
 	}
 	return 0;
 }

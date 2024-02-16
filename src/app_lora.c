@@ -7,6 +7,7 @@
 
 #include "app_lora.h"
 
+//  ======== app_lora_config ============================================
 int8_t app_lora_config(const struct device *dev, bool TxRx)
 {
 	int8_t ret;
