@@ -62,7 +62,7 @@ int8_t main(void)
 			return 0;
 		}
 
-	// transmission of 5 packets on PHY lora layer
+	// transmission of 5 packets on phy lora layer
 	for (itr = 0; itr < 5; itr++) {
 		printk("iteration: %d\n", itr);
 		ret = lora_send(lora_dev, &test_tx, sizeof(test_tx));

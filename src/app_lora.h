@@ -17,7 +17,7 @@
 
 //  ======== defines ===============================================
 #define TRANSMIT    1
-#define LED_TX      DT_ALIAS(led0)
+#define LED_TX      DT_ALIAS(led0)  // declared in device tree 
 
 //  ======== prototypes ============================================
 int8_t app_lora_config(const struct device *dev, bool TxRx);
