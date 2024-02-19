@@ -7,10 +7,6 @@
 
 #include <zephyr/device.h>
 #include <zephyr/kernel.h>
-#include <zephyr/drivers/lora.h>
-#include <zephyr/drivers/gpio.h>
-
-#include <zephyr/posix/time.h>
 #include "app_lora.h"
 
 //  ======== globals ============================================
@@ -38,7 +34,7 @@ int8_t main(void)
 	test_tx.id_test = dev_eui;
 	test_tx.time = date_time;
 	test_tx.name_val = "temp:";
-	test_tx.rand_val = sys_rand32_get();
+	test_tx.rand_val = sys_rand32_get();	// random value simulating ADC value in int32 format
 
 	printk("LoRa Transmitter Example\nBoard: %s\n", CONFIG_BOARD);
 	
