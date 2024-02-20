@@ -67,7 +67,8 @@ int8_t main(void)
 			printk("LoRa send failed\n");
 			return 0;
 		} else {
-			ret = gpio_pin_toggle_dt(&led_tx);	// flashing of the LED when a packet is transmitted 
+			// flashing of the LED when a packet is transmitted
+			ret = gpio_pin_toggle_dt(&led_tx);	 
 			if (ret < 0) {
 				return 0;
 			}
