@@ -13,7 +13,6 @@
 struct payload_serial {
 		char *id_test;
 		char *time;
-		char *name_val;
 		uint32_t rand_val;
 };
 
@@ -33,7 +32,6 @@ int8_t main(void)
 	struct payload_serial test_tx;
 	test_tx.id_test = dev_eui;
 	test_tx.time = date_time;
-	test_tx.name_val = "temp:";
 	test_tx.rand_val = sys_rand32_get();	// random value simulating ADC value in int32 format
 
 	printk("LoRa Transmitter Example\nBoard: %s\n", CONFIG_BOARD);
@@ -72,10 +70,10 @@ int8_t main(void)
 			if (ret < 0) {
 				return 0;
 			}
-			// printing of data and syze of packets
+			// printing of data and size of packets
 			printk("XMIT %d bytes: \n", sizeof(test_tx));
 			for (uint16_t i = 0; i < sizeof(test_tx); i++) {
-				printk("id: %s, time: %s, test: %s, value: %d\n", test_tx.id_test, test_tx.time, test_tx.name_val, test_tx.rand_val);
+				printk("id: %s, time: %s, value: %d\n", test_tx.id_test, test_tx.time, test_tx.rand_val);
 			}
 			printk("\n");
 		}
