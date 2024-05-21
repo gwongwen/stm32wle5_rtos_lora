@@ -60,7 +60,7 @@ int8_t main(void)
 		ret = lora_send(lora_dev, &test_tx, sizeof(test_tx));
 		
 		if (ret < 0) {
-			printk("LoRa send failed\n");
+			printk("LoRa send failed. error%d\n", ret);
 			return 0;
 		} else {
 			// flashing of the LED when a packet is transmitted
