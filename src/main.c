@@ -71,7 +71,7 @@ int8_t main(void)
 			// printing of data and size of packets
 			printk("XMIT %d bytes: \n", sizeof(test_tx));
 			for (uint16_t i = 0; i < sizeof(test_tx); i++) {
-				printk("id: %s, time: %s, value: %d\n", test_tx.id_test, test_tx.time, test_tx.rand_val);
+				printk("id: %s, time: %s, value: %u\n", test_tx.id_test, test_tx.time, test_tx.rand_val);
 			}
 			printk("\n");
 		}
