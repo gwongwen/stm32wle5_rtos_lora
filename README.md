@@ -1,4 +1,4 @@
-# Code for Sastress Project : test of LoRa radio (transmitter)
+# Code for 6Sens Project : test of LoRa radio (transmitter)
 
 ## Overview
 This simple application allows us to demonstrate and validate the LoRa subsystem of Zephyr RTOS. This code allows testing of LoRa radio, only transmission for this code.
